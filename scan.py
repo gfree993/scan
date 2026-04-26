@@ -1,3 +1,15 @@
+import os  # 최상단에 추가
+
+# 1. 텔레그램 설정 (환경변수 사용)
+TELEGRAM_TOKEN = os.environ.get('TELEGRAM_TOKEN')
+CHAT_ID = os.environ.get('CHAT_ID')
+
+def send_msg(text):
+    if not TELEGRAM_TOKEN or not CHAT_ID:
+        print("토큰이나 ID 설정이 되어 있지 않습니다.")
+        return
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+    # ... 나머지 코드는 동일 ...
 import yfinance as yf
 import pandas as pd
 import requests
