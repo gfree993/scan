@@ -1,0 +1,22 @@
+name: Stock Scanner Auto Run
+
+on:
+  schedule:
+    # 한국시간(KST) 오후 3시 10분 = UTC 오전 6시 10분
+    - cron: '30 5 * * 1-5'
+  workflow_dispatch: # 직접 실행하고 싶을 때 버튼 생성
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install yfinance pandas requests
+      - name: Run Script
+        run: python scan.py
